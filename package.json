@@ -16,10 +16,12 @@
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.36.1",
+    "react-hot-loader": "^4.13.0",
     "react-router-dom": "^5.2.1",
     "react_ujs": "^2.6.2"
   },
   "devDependencies": {
+    "@webpack-cli/serve": "^1.7.0",
     "webpack-dev-server": "^4.11.1"
   }
 }

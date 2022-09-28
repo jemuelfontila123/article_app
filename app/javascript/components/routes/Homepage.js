@@ -1,21 +1,31 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import ArticleNavbar from "../shared/ArticleNavbar"
+import ArticleNavbar from "../shared/ArticleNavbar";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useLocation } from 'react-router-dom';
-
+import { useLocation } from "react-router-dom";
+import articlesApi from "../../services/articlesApi";
 const Homepage = (props) => {
   const [articles, setArticles] = useState([]);
-  const [user, setUser] = useState({})
-  const {data}  = props;
+  const [user, setUser] = useState({});
+  const location = useLocation();
+
+  const fetchArticles = async() => {
+    try{
+      const data = await articlesApi.getArticles();
+      console.log(data)
+      setArticles(data)
+    }catch(error){
+      console.log(error)
+    }
+  }
   useEffect(() => {
     if (props.articles && props.articles.length) {
       setArticles(props.articles);
-    } 
-    if (location && location.state.data)
-      setUser(location.state.data)
+    }
+    fetchArticles()
+    // if (location && location.state.data)
+    //   setUser(location.state.data)
   }, []);
-  const location = useLocation();
   const content = articles.map((article) => (
     <div key={article.id} class="container">
       <div class="row">
@@ -33,8 +43,8 @@ const Homepage = (props) => {
       </div>
     </div>
   ));
-  console.log(location.state)
-  console.log(props.articles)
+  console.log(location.state);
+  console.log(props.articles);
   return (
     <div>
       <ArticleNavbar />
