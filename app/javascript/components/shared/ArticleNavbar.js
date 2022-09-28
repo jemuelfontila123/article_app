@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ArticleNavbar = () => {
+import "bootstrap/dist/css/bootstrap.min.css";
+const ArticleNavbar = (props) => {
   return (
     <nav class="navbar navbar-expand-lg bg-light sticky-top">
       <div class="container-fluid ">
@@ -23,21 +24,40 @@ const ArticleNavbar = () => {
               />
             </form>
           </div>
-          <div class="me-2 d-flex">
-            <Link to="/users/sign_in" class="btn btn-link" type="button">
-              {" "}
-              Sign In
-            </Link>
-            <Link
-              to="/users/sign_up"
-              style={{ textDecoration: "none" }}
-              class="btn btn-primary"
-              type="button"
-            >
-              {" "}
-              Create Account{" "}
-            </Link>
-          </div>
+          {!props.user && (
+            <div class="me-2 d-flex">
+              <Link to="/users/sign_in" class="btn btn-link" type="button">
+                {" "}
+                Sign In
+              </Link>
+              <Link
+                to="/users/sign_up"
+                style={{ textDecoration: "none" }}
+                class="btn btn-primary"
+                type="button"
+              >
+                {" "}
+                Create Account{" "}
+              </Link>
+            </div>
+          )}
+          {props.user && (
+            <div class="me-2 d-flex">
+              <Link to="/users/post" class="btn btn-link" type="button">
+                {" "}
+                Create Article
+              </Link>
+              <Link
+                to="/users/profile"
+                style={{ textDecoration: "none" }}
+                class="btn btn-primary"
+                type="button"
+              >
+                {" "}
+                Profile
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </nav>

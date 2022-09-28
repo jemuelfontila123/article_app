@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220927133242) do
+ActiveRecord::Schema.define(version: 20220928130532) do
 
   create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string "title"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20220927133242) do
     t.datetime "updated_at", null: false
     t.integer "status"
     t.bigint "user_id"
+    t.string "highlight"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 

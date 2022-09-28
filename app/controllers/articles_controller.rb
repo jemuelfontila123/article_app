@@ -1,13 +1,13 @@
 class ArticlesController < ApplicationController
     before_action :set_article, only: [:show, :edit, :update, :destroy] 
+
+    before_action :authenticate_user! 
+
     def index
       @articles = Article.all
-      render json: @articles
+      render json: @articles, include: ['user']
     end
   
-    def show 
-    end 
-    
     def new 
       @article = Article.new 
     end 
@@ -22,9 +22,6 @@ class ArticlesController < ApplicationController
       end 
     end 
   
-    def edit 
-    end 
-    
     def update 
       if @article.update(article_params)
         redirect_to @article 

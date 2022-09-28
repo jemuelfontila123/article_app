@@ -22,6 +22,9 @@ gem 'webpacker'
 gem 'react-rails'
 
 gem 'devise'
+gem 'jwt'
+
+gem 'fast_jsonapi'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

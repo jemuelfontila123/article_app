@@ -1,7 +1,6 @@
 import React from "react";
 import ArticleNavbar from "../shared/ArticleNavbar";
 import { useForm } from "react-hook-form";
-import "bootstrap/dist/css/bootstrap.min.css";
 import registrationsApi from "../../services/registrationsApi"
 import { useHistory } from "react-router-dom";
 

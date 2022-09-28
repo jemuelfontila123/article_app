@@ -7,7 +7,8 @@ class SessionsController < Devise::SessionsController
   
       if @user.valid_password?(user_params[:password])
         sign_in :user, @user
-        render json: @user
+        response = { :user => @user, :token => @user.generate_jwt}
+        render json: response
       else
         invalid_login_attempt
       end
@@ -20,7 +21,11 @@ class SessionsController < Devise::SessionsController
   
   
       private
-  
+      
+      def get_user 
+        @user 
+      end
+      
       def invalid_login_attempt
         warden.custom_failure!
         render json: {error: 'invalid login attempt'}, status: :unprocessable_entity

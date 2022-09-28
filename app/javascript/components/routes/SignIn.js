@@ -1,9 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import ArticleNavbar from "../shared/ArticleNavbar";
 import { useForm } from "react-hook-form";
-import "bootstrap/dist/css/bootstrap.min.css";
 import sessionsApi from "../../services/sessionsApi";
-import registrationsApi from "../../services/registrationsApi";
 import { useHistory } from "react-router-dom";
 const SignIn = () => {
   const {
@@ -13,7 +11,11 @@ const SignIn = () => {
     reset,
     formState: { errors },
   } = useForm();
+  useEffect(() => {
+    if (window.localStorage.getItem("token")) 
+      history.push('/');  
 
+  },[])
   let history = useHistory();
   const onLogIn = async (data) => {
     const { email, password } = data;
@@ -26,6 +28,8 @@ const SignIn = () => {
     try {
       const data = await sessionsApi.signIn(userDetails);
       console.log(data);
+      window.localStorage.setItem('user', JSON.stringify(data.user)) 
+      window.localStorage.setItem('token', JSON.stringify(data.token))
       history.push({ pathname: "/", state: { data } });
     } catch (error) {
       console.log(error);
