@@ -2,10 +2,11 @@ class ArticlesController < ApplicationController
     before_action :set_article, only: [:show, :edit, :update, :destroy] 
 
     before_action :authenticate_user! 
-
+    
+    before_action :set_articles, only: [:index]
     def index
-      @articles = Article.all
-      render json: @articles, include: ['user']
+      data  = { articles: @articles, count: Article.count}
+      render json: data, include: ['user']
     end
   
     def new 
@@ -44,6 +45,14 @@ class ArticlesController < ApplicationController
   
     def set_article 
       @article = Article.find(params[:id]) 
+    end
+
+    def set_articles 
+      if params[:page] 
+        @articles = Article.page(params[:page]) 
+      else 
+        @articles = Article.page(1) 
+      end 
     end
   
   end

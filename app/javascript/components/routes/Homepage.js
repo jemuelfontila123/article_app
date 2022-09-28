@@ -12,7 +12,7 @@ const Homepage = (props) => {
     try {
       const data = await articlesApi.getArticles();
       console.log(data);
-      setArticles(data);
+      setArticles(data.articles);
     } catch (error) {
       console.log(error);
     }

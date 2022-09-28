@@ -24,7 +24,9 @@ gem 'react-rails'
 gem 'devise'
 gem 'jwt'
 
-gem 'fast_jsonapi'
+gem 'fast_jsonapi' 
+
+gem 'kaminari'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
