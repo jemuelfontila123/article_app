@@ -26,7 +26,9 @@ gem 'jwt'
 
 gem 'fast_jsonapi' 
 
-gem 'kaminari'
+gem 'kaminari' 
+
+gem 'ransack'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

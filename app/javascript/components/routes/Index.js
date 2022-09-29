@@ -5,14 +5,16 @@ import Register from "./Register";
 import SignIn from "./SignIn";
 import CreateArticle from "./CreateArticle";
 import Profile from "./Profile";
+import Article from "./Article";
 export default (
   <Router>
     <Switch>
       <Route path="/" exact component={Homepage} />
+      <Route path="/articles/:id" component={Article}/>
       <Route path="/users/sign_up" component={Register} />
       <Route path="/users/sign_in" component={SignIn} />
       <Route path="/users/profile" component={Profile} />
-      <Route path="/users/post" component={CreateArticle} />
+      <Route path="/users/post" component={CreateArticle} /> 
     </Switch>
   </Router>
 );

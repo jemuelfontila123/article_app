@@ -1,8 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import articlesApi from "../../services/articlesApi";
+import { useForm } from "react-hook-form";
 import "bootstrap/dist/css/bootstrap.min.css";
 const ArticleNavbar = (props) => {
+  
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  
+  const searchArticles = async data => {
+   
+  try{
+    const articles = await articlesApi.searchArticles(data.search_value) 
+    console.log(articles)  
+    props.setArticles(articles.articles)
+  }catch(error){
+    console.log(error)
+  }
+
+  }
   return (
     <nav class="navbar navbar-expand-lg bg-light sticky-top">
       <div class="container-fluid ">
@@ -15,12 +35,13 @@ const ArticleNavbar = (props) => {
               {" "}
               Home{" "}
             </Link>
-            <form role="search" class="me-2 w-100">
+            <form role="search" class="me-2 w-100" onSubmit={handleSubmit(searchArticles)}>
               <input
                 class="form-control "
                 type="search"
                 placeholder="Search Articles"
                 aria-label="Search"
+                {...register("search_value")} 
               />
             </form>
           </div>
